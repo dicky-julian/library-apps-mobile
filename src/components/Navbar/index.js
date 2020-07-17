@@ -3,6 +3,7 @@ import { NavigationContainer  } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import Home from '../../screens/Home';
 import Mybook from '../../screens/Mybook';
+import Database from '../../screens/Database';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -22,6 +23,7 @@ const Navbar = () => {
       }}>
         <Tab.Screen name="Home" component={Home} />
         <Tab.Screen name="Mybook" component={Mybook} />
+        <Tab.Screen name="Database" component={Database} />
       </Tab.Navigator>
     </NavigationContainer>
   );

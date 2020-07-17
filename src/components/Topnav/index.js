@@ -6,6 +6,9 @@ import style from './style';
 const TopNavigationCase = () => {
     const [menuVisible, setMenuVisible] = React.useState(false);
 
+    const toggleMenu = () => {
+        setMenuVisible(!menuVisible);
+    };
 
     const renderMenuAction = () => (
         <TopNavigationAction icon={MenuIcon} onPress={toggleMenu} />
@@ -14,9 +17,6 @@ const TopNavigationCase = () => {
     const renderLeftActions = () => (
         <TopNavigationAction icon={BackIcon} />
     );
-    const toggleMenu = () => {
-        setMenuVisible(!menuVisible);
-    };
 
     const renderRightActions = () => (
         <React.Fragment>

@@ -2,20 +2,28 @@ import { StyleSheet } from 'react-native';
 
 const TextStyle = StyleSheet.create({
     h1: {
-        fontSize: 35
+        fontSize: 35,
+        lineHeight: 45
     },
     h2: {
-        fontSize: 30
+        fontSize: 30,
+        lineHeight: 40
     },
     h3: {
-        fontSize: 25
+        fontSize: 25,
+        lineHeight: 35
     },
     h4: {
-        fontSize: 22
+        fontSize: 22,
+        lineHeight: 32
     },
     default: {
         fontSize: 17,
         lineHeight: 27
+    },
+    h6: {
+        fontSize: 15,
+        lineHeight: 22
     },
     bold: {
         fontWeight: '700'

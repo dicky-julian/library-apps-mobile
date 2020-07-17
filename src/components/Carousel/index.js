@@ -13,7 +13,7 @@ const _renderItem = ({ item }) => (
             source={{ uri: imgUrl }}
         />
         <View style={style.productDetail}>
-            <Text style={{...style.productTitle, ...textStyle.h3, ...textStyle.light}}>{item.title}</Text>
+            <Text style={{...style.productTitle, ...textStyle.h4, ...textStyle.light, ...textStyle.bold}}>{item.title}</Text>
             <Text style={{...textStyle.default, ...textStyle.fade}}>{item.text}</Text>
             <Text style={{...style.productLink, ...textStyle.default, ...textStyle.light}}>Read More</Text>
         </View>

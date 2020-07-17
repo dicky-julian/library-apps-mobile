@@ -7,6 +7,12 @@ const style = StyleSheet.create({
     paddingRight: 40,
     alignItems: 'center',
     borderRadius: 5
+  },
+  smallButton: {
+    width: 90,
+    padding: 10,
+    alignItems: 'center',
+    borderRadius: 5
   }
 });
 

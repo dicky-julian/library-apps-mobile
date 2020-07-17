@@ -5,7 +5,6 @@ const style = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: 30,
     marginBottom: 50
   },
   carouselList: {

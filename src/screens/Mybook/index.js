@@ -1,30 +1,28 @@
-import React from 'react';
-import { SafeAreaView } from 'react-native';
-import { Divider, Icon, Layout, Text, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
+import React, { useState } from 'react';
+import { ScrollView, View } from 'react-native';
+import { Button, Product } from '../../components';
+import style from './style';
 
-const BackIcon = (props) => (
-  <Icon {...props} name='arrow-back' />
-);
-
-const Mybook = ({ navigation }) => {
-
-  const navigateBack = () => {
-    navigation.goBack();
-  };
-
-  const BackAction = () => (
-    <TopNavigationAction icon={BackIcon} onPress={navigateBack}/>
-  );
+const Mybook = () => {
+  const [btActive, setBtActive] = useState([['#272829', 'transparent'], ['#fff', '#000']]);
+  const handleButton = (type) => {
+    if (type) {
+      setBtActive([['transparent', '#272829'], ['#000', '#fff']]);
+    } else {
+      setBtActive([['#272829', 'transparent'], ['#fff', '#000']]);
+    }
+  }
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <TopNavigation title='MyApp' alignment='center' accessoryLeft={BackAction}/>
-      <Divider/>
-      <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text category='h1'>DETAILS</Text>
-      </Layout>
-    </SafeAreaView>
+    <ScrollView style={style.container}>
+      <View style={style.listAction}>
+        <Button title='Borrowed' background={btActive[0][0]} color={btActive[1][0]} onPress={() => handleButton(0) } />
+        <Button title='Returned' background={btActive[0][1]} color={btActive[1][1]} onPress={() => handleButton(1) } />
+      </View>
+
+      <Product />
+    </ScrollView>
   );
-};
+}
 
 export default Mybook;

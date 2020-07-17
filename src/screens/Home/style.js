@@ -1,10 +1,6 @@
 import { Dimensions, StyleSheet } from 'react-native';
 
 const style = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
   headerBg : {
     alignItems: 'center',
     justifyContent: 'center',
@@ -34,7 +30,8 @@ const style = StyleSheet.create({
   },
   listContainer: {
     paddingLeft: 15,
-    paddingRight: 15
+    paddingRight: 15,
+    marginBottom: 30
   },
   listPopular: {
     marginTop: -150,
@@ -43,13 +40,6 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 50
-  },
-  button: {
-    width: 100,
-    padding: 15,
-    alignItems: 'center',
-    backgroundColor: '#272829',
-    borderRadius: 5
   }
 });
 

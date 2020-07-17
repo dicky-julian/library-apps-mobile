@@ -1,25 +1,26 @@
 import { StyleSheet } from 'react-native';
 
 const style = StyleSheet.create({
+    container: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        flexWrap: 'wrap',
+        marginBottom: 15
+    },
     productContainer: {
-        width: '100%',
+        width: '31%',
         marginBottom: 30
     },
     productImg: {
-        width: '100%',
-        height: 250,
+        height: 180,
         borderRadius: 5
     },
     productDetail: {
-        padding: 10,
+        paddingTop: 5
     },
     productTitle: {
         marginBottom: 10
     },
-    productLink: {
-        marginTop: 10,
-        textAlign: 'right'
-    }
 });
 
 export default style;
