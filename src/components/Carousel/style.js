@@ -8,7 +8,7 @@ const style = StyleSheet.create({
     marginBottom: 50
   },
   carouselList: {
-    marginLeft: 15,
+    marginLeft: 15
   },
   productImg: {
     width: 300,

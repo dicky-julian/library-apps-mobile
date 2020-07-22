@@ -14,14 +14,10 @@ const TextStyle = StyleSheet.create({
         lineHeight: 35
     },
     h4: {
-        fontSize: 22,
+        fontSize: 20,
         lineHeight: 32
     },
-    default: {
-        fontSize: 17,
-        lineHeight: 27
-    },
-    h6: {
+    h5: {
         fontSize: 15,
         lineHeight: 22
     },

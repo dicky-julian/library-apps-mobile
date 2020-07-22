@@ -5,7 +5,7 @@ const style = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         flexWrap: 'wrap',
-        marginBottom: 15
+        marginBottom: 15,
     },
     productContainer: {
         width: '31%',

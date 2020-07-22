@@ -5,6 +5,7 @@ import style from './style';
 
 const Mybook = () => {
   const [btActive, setBtActive] = useState([['#272829', 'transparent'], ['#fff', '#000']]);
+
   const handleButton = (type) => {
     if (type) {
       setBtActive([['transparent', '#272829'], ['#000', '#fff']]);
@@ -20,7 +21,7 @@ const Mybook = () => {
         <Button title='Returned' background={btActive[0][1]} color={btActive[1][1]} onPress={() => handleButton(1) } />
       </View>
 
-      <Product />
+      {/* <Product data={carouselItems} /> */}
     </ScrollView>
   );
 }

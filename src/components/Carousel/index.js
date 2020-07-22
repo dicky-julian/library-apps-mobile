@@ -1,26 +1,27 @@
 import React from 'react';
 import ReactCarousel from 'react-native-snap-carousel';
-import { Image, Text, View } from 'react-native';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { baseUrl } from '../../utils/apis/service';
 import textStyle from '../Text';
 import style from './style';
 
-const imgUrl = 'https://www.jaehakim.com/wp-content/uploads/2555/04/DescendantsoftheSun-top.jpg';
+const url = `${baseUrl}/images/`;
 
 const _renderItem = ({ item }) => (
-    <View style={style.carouselList}>
+    <TouchableOpacity style={style.carouselList}>
         <Image
             style={style.productImg}
-            source={{ uri: imgUrl }}
+            source={{ uri: `${url}${item.image}` }}
         />
         <View style={style.productDetail}>
             <Text style={{...style.productTitle, ...textStyle.h4, ...textStyle.light, ...textStyle.bold}}>{item.title}</Text>
-            <Text style={{...textStyle.default, ...textStyle.fade}}>{item.text}</Text>
-            <Text style={{...style.productLink, ...textStyle.default, ...textStyle.light}}>Read More</Text>
+            <Text style={{...textStyle.h5, ...textStyle.fade}}>{item.description.substring(0, 100)} . . .</Text>
+            <Text style={{...style.productLink, ...textStyle.h5, ...textStyle.light}}>Read More</Text>
         </View>
-    </View>
+    </TouchableOpacity>
 )
 
-const Carousel = ({ data }) => {
+export const Carousel = ({ data }) => {
     const [Index, setIndex] = React.useState(0);
     return (
         <View style={style.carouselContainer}>

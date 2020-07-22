@@ -1,10 +1,12 @@
-import React from 'react';
-import { Layout, MenuItem, OverflowMenu, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
-import { BackIcon, LogoutIcon, MenuIcon } from '../Icons';
+import React, { useState } from 'react';
+import { Image, View } from 'react-native';
+import { Layout, MenuItem, OverflowMenu, Text, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
+import { LogoutIcon, MenuIcon } from '../Icons';
 import style from './style';
 
 const TopNavigationCase = () => {
-    const [menuVisible, setMenuVisible] = React.useState(false);
+    const [menuVisible, setMenuVisible] = useState(false);
+    const [user, setUser] = useState({'name': 'Dicky Julian'});
 
     const toggleMenu = () => {
         setMenuVisible(!menuVisible);
@@ -15,7 +17,10 @@ const TopNavigationCase = () => {
     );
 
     const renderLeftActions = () => (
-        <TopNavigationAction icon={BackIcon} />
+        <Image
+        source={require('../../assets/images/Home/logo.png')}
+        style={style.icon}
+        />
     );
 
     const renderRightActions = () => (
@@ -25,7 +30,14 @@ const TopNavigationCase = () => {
                 visible={menuVisible}
                 onBackdropPress={toggleMenu}
                 style={style.modalMenu}>
-                <MenuItem accessoryLeft={LogoutIcon} title='Logout'/>
+                <View style={style.profile}>
+                    <Image
+                        style={style.profileImg}
+                        source={require('../../assets/images/Home/profile.png')}
+                    />
+                    <MenuItem title={user.name} style={{width: 100}}/>
+                </View>
+                <MenuItem accessoryLeft={LogoutIcon} title='Logout' style={{marginTop: -1}} />
             </OverflowMenu>
         </React.Fragment>
     );
@@ -35,7 +47,6 @@ const TopNavigationCase = () => {
             <TopNavigation
                 style={{ color: '#fff' }}
                 alignment='center'
-                title='Librarian'
                 accessoryLeft={renderLeftActions}
                 accessoryRight={renderRightActions}
             />
