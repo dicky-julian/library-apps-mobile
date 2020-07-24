@@ -3,6 +3,7 @@ import { Image, ScrollView, Text, TextInput, View } from 'react-native';
 import { connect } from 'react-redux';
 import { Alert, Button, TextStyle } from '../../components';
 import { setLogin, setError, setLoading } from '../../redux/actions/auths';
+import { fetchRegister } from '../../utils/apis/fetch';
 import style from './style';
 
 const Auth = (props) => {
@@ -34,11 +35,23 @@ const Auth = (props) => {
     }
 
     const signup = () => {
-        if (!fullname) {props.setError({
-            'title': 'Invalid input',
-            'description': 'Fullname cant be empty'
-        })}
+        if (!fullname) {
+            props.setError({
+                'title': 'Invalid input',
+                'description': 'Fullname cant be empty'
+            }); return
+        }
         inputValidation();
+        fetchRegister(fullname, uname, pass).then(res => {
+            if (!res) {
+                props.setError({
+                    'title': 'Invalid Entry',
+                    'description': 'Error on invalid or non-specific entries, please enter in more unique words.'
+                }); return true;
+            }
+             Alert('Successfully Signed Up', 'please login to continue')
+            
+        })
     }
 
     useEffect(() => {
@@ -46,7 +59,7 @@ const Auth = (props) => {
         if (error) {
             Alert(error.title, error.description);
             props.setError(false);
-        } 
+        }
     })
 
     return (

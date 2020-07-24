@@ -6,7 +6,9 @@ import Home from '../../screens/Home';
 import Mybook from '../../screens/Mybook';
 import Database from '../../screens/Database';
 import Auth from '../../screens/Auth';
-import { setToken, revokeUser } from '../../redux/actions/auths';
+import Map from '../../screens/Maps';
+import RealTime from '../../screens/Maps/realtime';
+import { setToken } from '../../redux/actions/auths';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -44,9 +46,10 @@ const Navbar = (props) => {
             activeTintColor: '#fff',
             style: { backgroundColor: '#272829' }
           }}>
-            <Tab.Screen name="Login" component={Auth} />
-          <Tab.Screen name="Home" component={Home} />
-          
+          {/* <Tab.Screen name="Home" component={Home} />
+          <Tab.Screen name="Login" component={Auth} /> */}
+          <Tab.Screen name="Maps" component={Map} />
+          <Tab.Screen name="Real Time" component={RealTime} />
         </Tab.Navigator>
       }
 
@@ -59,6 +62,6 @@ const mapStateToProps = state => ({
   token: state.token
 });
 
-const mapDispathToProps = { setToken, revokeUser };
+const mapDispathToProps = { setToken };
 
 export default connect(mapStateToProps, mapDispathToProps)(Navbar);

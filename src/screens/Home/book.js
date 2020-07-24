@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Image, TouchableOpacity, ScrollView, View, Text } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { baseUrl } from '../../utils/apis/service';
 import { Button, TextStyle } from '../../components';
 import { BackIcon, BookIcon, TimeIcon, UserIcon } from '../../components/Icons';
+import { fetchBorrow } from '../../redux/actions/transaction';
 import style from './style';
 
 const Book = (props) => {
@@ -13,8 +13,15 @@ const Book = (props) => {
   const author = props.book.author.find((author => { return author.id == data.id_author }));
   const genre = props.book.genre.find((genre => { return genre.id == data.id_genre }));
 
-  const navigation = useNavigation();
+  const [status, setStatus] = useState(data.status);
+
   const url = `${baseUrl}/images/`;
+
+  const handleBorrow = () => {
+    setStatus(2);
+    props.fetchBorrow(props.auths.isLogin.id, id);
+  }
+
   return (
     <>
       <ScrollView style={style.container}>
@@ -76,17 +83,22 @@ const Book = (props) => {
       <TouchableOpacity style={style.backIconWrapper} onPress={() => props.navigation.goBack()}>
         <BackIcon style={style.backIcon} color='#fff' />
       </TouchableOpacity>
-      {data.status === 1 ?
-        <Button title='Borrow' background='#cac592' color='#000' style={style.btBorrow} textStyle={{ textTransform: 'uppercase' }} />
-        :
-        <Button title='Out of Stock' background='#cac592' color='#8a854b' style={style.btBorrow} textStyle={{ textTransform: 'uppercase' }} />
+      {props.auths.isLogin && !props.auths.isAdmin ?
+        status === 1 ?
+          <Button title='Borrow' background='#cac592' color='#000' style={style.btBorrow} textStyle={{ textTransform: 'uppercase' }} onPress={() => handleBorrow()} />
+          :
+          <Button title='Out of Stock' background='#cac592' color='#8a854b' style={style.btBorrow} textStyle={{ textTransform: 'uppercase' }} />
+        : <></>
       }
     </>
   );
 };
 
 const mapStateToProps = state => ({
+  auths: state.auths,
   book: state.book
 });
 
-export default connect(mapStateToProps)(Book);
+const mapDispathToProps = { fetchBorrow };
+
+export default connect(mapStateToProps, mapDispathToProps)(Book);

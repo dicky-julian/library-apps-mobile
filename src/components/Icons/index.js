@@ -9,6 +9,10 @@ export const BookIcon = (props) => (
     <Icon {...props} name='book-open-outline' fill={props.color} />
 );
 
+export const CloseIcon = (props) => (
+    <Icon {...props} name='close-outline' fill={props.color} />
+);
+
 export const EditIcon = (props) => (
     <Icon {...props} name='edit-2' fill='#845de7' />
 );
@@ -26,7 +30,7 @@ export const LogoutIcon = (props) => (
 );
 
 export const MenuIcon = (props) => (
-    <Icon {...props} name='more-vertical' />
+    <Icon {...props} name='more-vertical' fill={props.color} />
 );
 
 export const TimeIcon = (props) => (

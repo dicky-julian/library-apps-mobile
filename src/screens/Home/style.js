@@ -102,10 +102,10 @@ const style = StyleSheet.create({
     height: 25
   },
   backIconWrapper: {
-    width: 50, 
+    width: 50,
     height: 50,
     position: 'absolute',
-    alignSelf:'flex-start',
+    alignSelf: 'flex-start',
     top: 15,
     left: 15,
     right: 15,
@@ -116,7 +116,7 @@ const style = StyleSheet.create({
   },
   btBorrow: {
     position: 'absolute',
-    alignSelf:'flex-end',
+    alignSelf: 'flex-end',
     bottom: 15,
     left: 15,
     right: 15

@@ -15,7 +15,7 @@ const fetchLogin = async (uname, pass) => {
         .then(res => {
             return res.data.data;
         })
-        .catch((err) => {
+        .catch(() => {
             return false
         });
     return res;
@@ -38,7 +38,8 @@ const fetchRegister = async (fullname, uname, pass) => {
             return res.data;
         })
         .catch(err => {
-            return err.response;
+            console.log(err.response)
+            return false;
         })
     return res;
 }

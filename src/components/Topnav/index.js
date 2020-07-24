@@ -1,45 +1,50 @@
 import React, { useState } from 'react';
-import { Image, View } from 'react-native';
-import { Layout, MenuItem, OverflowMenu, Text, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
-import { LogoutIcon, MenuIcon } from '../Icons';
+import { Image, Modal, View, Text, TouchableHighlight } from 'react-native';
+import { connect } from 'react-redux';
+import { Layout, TopNavigation } from '@ui-kitten/components';
+import { smallButton as Button } from '../Button';
+import { CloseIcon, MenuIcon } from '../Icons';
+import { setLogout } from '../../redux/actions/auths';
 import style from './style';
 
-const TopNavigationCase = () => {
-    const [menuVisible, setMenuVisible] = useState(false);
-    const [user, setUser] = useState({'name': 'Dicky Julian'});
-
-    const toggleMenu = () => {
-        setMenuVisible(!menuVisible);
-    };
-
-    const renderMenuAction = () => (
-        <TopNavigationAction icon={MenuIcon} onPress={toggleMenu} />
-    );
+const TopNavigationCase = (props) => {
+    const [modalVisible, setModalVisible] = useState(false);
+    const user = props.auths.isLogin;
 
     const renderLeftActions = () => (
         <Image
-        source={require('../../assets/images/Home/logo.png')}
-        style={style.icon}
+            source={require('../../assets/images/Home/logo.png')}
+            style={style.icon}
         />
     );
 
     const renderRightActions = () => (
-        <React.Fragment>
-            <OverflowMenu
-                anchor={renderMenuAction}
-                visible={menuVisible}
-                onBackdropPress={toggleMenu}
-                style={style.modalMenu}>
-                <View style={style.profile}>
-                    <Image
-                        style={style.profileImg}
-                        source={require('../../assets/images/Home/profile.png')}
-                    />
-                    <MenuItem title={user.name} style={{width: 100}}/>
-                </View>
-                <MenuItem accessoryLeft={LogoutIcon} title='Logout' style={{marginTop: -1}} />
-            </OverflowMenu>
-        </React.Fragment>
+        <>
+            {user ?
+                <>
+                    <TouchableHighlight>
+                        <MenuIcon color='#fff' style={style.menuIcon} onPress={() => setModalVisible(true)} />
+                    </TouchableHighlight>
+                    <Modal
+                        animationType='fade'
+                        transparent={true}
+                        visible={modalVisible}
+                    >
+                        <View style={style.modalContainer}>
+                            <CloseIcon style={style.closeIcon} color='#fff' onPress={() => setModalVisible(false)} />
+                            <View style={style.profile}>
+                                <Image
+                                    style={style.profileImg}
+                                    source={require('../../assets/images/Home/profile.png')}
+                                />
+                                <Text style={{ color: '#fff', marginTop: 10, marginBottom: 5 }}>{user.fullname}</Text>
+                                <Text style={{ color: '#b0b0b0', marginBottom: 10}}>{user.role}</Text>
+                            </View>
+                            <Button title='Logout' background='#cac592' color='#000' onPress={() => {setModalVisible(false); props.setLogout()}} />
+                        </View>
+                    </Modal>
+                </> : <></>}
+        </>
     );
 
     return (
@@ -54,6 +59,10 @@ const TopNavigationCase = () => {
     );
 };
 
+const mapStateToProps = state => ({
+    auths: state.auths,
+});
 
+const mapDispathToProps = { setLogout };
 
-export default TopNavigationCase;
+export default connect(mapStateToProps, mapDispathToProps)(TopNavigationCase);

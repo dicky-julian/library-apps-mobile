@@ -1,6 +1,5 @@
 import React from 'react';
 import { ActivityIndicator, TouchableOpacity, Text, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import style from './style';
 
 const Button = (props) => {
@@ -20,7 +19,7 @@ const Button = (props) => {
 
 export const smallButton = (props) => {
     return (
-        <TouchableOpacity onPress={props.onPress} style={{ ...style.smallButton, backgroundColor: props.background, ...props.style }}>
+        <TouchableOpacity onPress={props.onPress} style={{ ...style.smallButton, backgroundColor: props.background, ...props.style, width: props.width, }}>
             <Text style={{ fontSize: 15, color: props.color, textTransform: 'capitalize' }}>{props.title}</Text>
         </TouchableOpacity>
     )

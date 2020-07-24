@@ -31,6 +31,7 @@ const setUser = (data) => {
 const setToken = (token) => dispatch => {
     const tokenData = decode(token);
     const data = {
+        id: tokenData.id,
         fullname: tokenData.fullname,
         role: tokenData.role
     }
@@ -59,6 +60,17 @@ const useToken = (token) => {
     }
 }
 
+const setLogout = () => dispatch => {
+    dispatch(revokeUser());
+    dispatch(revokeToken());
+}
+
+const revokeToken = () => {
+    return {
+        type: 'REVOKE_TOKEN'
+    }
+}
+
 const revokeUser = () => {
     return {
         type: 'REVOKE_USER'
@@ -70,5 +82,5 @@ export {
     setToken,
     setLoading,
     setError,
-    revokeUser
+    setLogout
 }

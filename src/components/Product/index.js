@@ -2,6 +2,7 @@ import React from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { baseUrl } from '../../utils/apis/service';
+import Empty from '../../screens/Empty';
 import textStyle from '../Text';
 import style from './style';
 
@@ -21,7 +22,7 @@ const Product = (props) => {
                                 style={style.productContainer}
                                 key={index}
                                 onPress={() => navigation.navigate('Book', {
-                                    id: data.id,
+                                    id: data.id_book || data.id,
                                 })} >
                                 <Image
                                     style={style.productImg}
@@ -33,7 +34,7 @@ const Product = (props) => {
                             </TouchableOpacity>
                         )
                     })
-                    : <Text>Gaonok</Text> : <Text>Gaonok</Text>
+                    : <Empty /> : <Empty />
             }
         </View>
     )
